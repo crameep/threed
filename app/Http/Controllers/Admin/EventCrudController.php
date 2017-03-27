@@ -30,6 +30,7 @@ class EventCrudController extends CrudController
 		*/
 
         $this->crud->setFromDb();
+        
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');

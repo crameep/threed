@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
 	$event = App\Models\Event::all();
-    return view('welcome')->with('events', $event);
+    return view('layout')->with('events', $event);
 });
 
 Route::group([

@@ -17,7 +17,7 @@
     <div class="container">
       <div class="nav-left">
         <a class="nav-item" href="../index.html">
-          <img src="3d.png" width="200px" height="200px" alt="Description">
+          <img src="ThreeD.png" alt="Description">
         </a>
       </div>
       <span class="nav-toggle">

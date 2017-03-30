@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Backpack\CRUD\app\Http\Controllers\CrudController;
-
-// VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\EventRequest as StoreRequest;
+// VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\EventRequest as UpdateRequest;
+use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 class EventCrudController extends CrudController
 {
@@ -15,22 +14,49 @@ class EventCrudController extends CrudController
     {
 
         /*
-		|--------------------------------------------------------------------------
-		| BASIC CRUD INFORMATION
-		|--------------------------------------------------------------------------
-		*/
+        |--------------------------------------------------------------------------
+        | BASIC CRUD INFORMATION
+        |--------------------------------------------------------------------------
+         */
         $this->crud->setModel("App\Models\Event");
         $this->crud->setRoute("admin/event");
         $this->crud->setEntityNameStrings('event', 'events');
 
         /*
-		|--------------------------------------------------------------------------
-		| BASIC CRUD INFORMATION
-		|--------------------------------------------------------------------------
-		*/
+        |--------------------------------------------------------------------------
+        | BASIC CRUD INFORMATION
+        |--------------------------------------------------------------------------
+         */
 
-        $this->crud->setFromDb();
-        
+        $this->crud->addColumn([
+            'name' => 'date',
+            'label' => 'Date',
+            'type' => 'date']);
+
+        $this->crud->addColumn([
+            'name' => 'club_id',
+            'label' => 'Club',
+            'type' => 'date']);
+
+        $this->crud->addColumn([
+            'name' => 'starts_at',
+            'label' => 'Start at',
+            'type' => 'time']);
+
+        $this->crud->addColumn([
+            'name' => 'ends_at',
+            'label' => 'Ends at',
+            'type' => 'time']);
+
+        $this->crud->addColumn([
+            'name' => 'targets',
+            'label' => '# of Targets',
+            'type' => 'number']);
+
+        $this->crud->addColumn([
+            'name' => 'ruleset',
+            'label' => 'Rule-Set',
+            'type' => 'text']);
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
@@ -97,21 +123,21 @@ class EventCrudController extends CrudController
         // $this->crud->limit();
     }
 
-	public function store(StoreRequest $request)
-	{
-		// your additional operations before save here
+    public function store(StoreRequest $request)
+    {
+        // your additional operations before save here
         $redirect_location = parent::storeCrud();
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
-	}
+    }
 
-	public function update(UpdateRequest $request)
-	{
-		// your additional operations before save here
+    public function update(UpdateRequest $request)
+    {
+        // your additional operations before save here
         $redirect_location = parent::updateCrud();
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
-	}
+    }
 }

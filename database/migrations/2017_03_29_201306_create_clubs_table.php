@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateEventsTable extends Migration
+class CreateClubsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,18 +13,18 @@ class CreateEventsTable extends Migration
      */
     public function up()
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('clubs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('club_id');
-            $table->date('date');
-            $table->timeTz('starts_at');
-            $table->timeTz('ends_at');
-            $table->integer('targets');
-            $table->string('ruleset');
+            $table->integer('user_id');
+            $table->text('name');
+            $table->text('address');
+            $table->text('city');
+            $table->text('phone');
             $table->text('info');
-            $table->boolean('confirmed');
+            $table->boolean('claimed');
             $table->decimal('lat', 10, 8);
             $table->decimal('long', 10, 8);
+            $table->integer('membership_cost');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -36,6 +37,6 @@ class CreateEventsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('events');
+        //
     }
 }

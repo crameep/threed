@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\EventRequest as StoreRequest;
+use App\Http\Requests\ClubRequest as StoreRequest;
+
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\EventRequest as UpdateRequest;
+use App\Http\Requests\ClubRequest as UpdateRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
-class EventCrudController extends CrudController
+class ClubCrudController extends CrudController
 {
 
     public function setUp()
@@ -18,9 +19,9 @@ class EventCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
          */
-        $this->crud->setModel("App\Models\Event");
-        $this->crud->setRoute("admin/events");
-        $this->crud->setEntityNameStrings('event', 'events');
+        $this->crud->setModel('App\Models\Club');
+        $this->crud->setRoute('admin/clubs');
+        $this->crud->setEntityNameStrings('club', 'clubs');
 
         /*
         |--------------------------------------------------------------------------
@@ -28,74 +29,38 @@ class EventCrudController extends CrudController
         |--------------------------------------------------------------------------
          */
 
-        $this->crud->addColumn([
-            'name' => 'date',
-            'label' => 'Date',
-            'type' => 'date']);
-
-        $this->crud->addColumn([
-            'name' => 'club_id',
-            'label' => 'Club',
-            'type' => 'date']);
-
-        $this->crud->addColumn([
-            'name' => 'starts_at',
-            'label' => 'Start at',
-            'type' => 'time']);
-
-        $this->crud->addColumn([
-            'name' => 'ends_at',
-            'label' => 'Ends at',
-            'type' => 'time']);
-
-        $this->crud->addColumn([
-            'name' => 'targets',
-            'label' => '# of Targets',
-            'type' => 'number']);
-
-        $this->crud->addColumn([
-            'name' => 'ruleset',
-            'label' => 'Rule-Set',
-            'type' => 'text']);
-
-        $this->crud->addField([
-            'name' => 'date',
-            'label' => 'Date',
-            'type' => 'date',
-        ]);
-
-        $this->crud->addField([
-            'name' => 'club_id',
-            'label' => 'Club',
-            'type' => 'select2',
-            'entity' => 'club',
-            'attribute' => 'name',
-            'model' => 'App\Models\Club']);
-
-        $this->crud->addField([
-            'name' => 'starts_at',
-            'label' => 'Start Time',
-            'type' => 'time']);
-
-        $this->crud->addField([
-            'name' => 'ends_at',
-            'label' => 'End Time',
-            'type' => 'time']);
-
-        $this->crud->addField([
-            'name' => 'targets',
-            'label' => 'Number of targets',
-            'type' => 'number']);
-        $this->crud->addField([
-            'name' => 'ruleset',
-            'label' => '',
-            'type' => '']);
-
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
         // $this->crud->removeField('name', 'update/create/both');
         // $this->crud->removeFields($array_of_names, 'update/create/both');
+
+        $this->crud->addField([
+            'name' => 'name',
+            'label' => 'Club Name',
+            'type' => 'text']);
+
+        $this->crud->addField([
+            'name' => 'address',
+            'label' => 'Address',
+            'type' => 'address',
+            'store_as_json' => true]);
+
+        $this->crud->addField([
+            'name' => 'phone',
+            'label' => 'Phone Number',
+            'type' => 'number']);
+
+        $this->crud->addField([
+            'name' => 'info',
+            'label' => 'Information',
+            'type' => 'summernote']);
+
+        $this->crud->addField([
+            'name' => 'membership_cost',
+            'label' => 'Cost of Membership',
+            'type' => 'number',
+            'prefix' => '$']);
 
         // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack
@@ -104,6 +69,16 @@ class EventCrudController extends CrudController
         // $this->crud->removeColumns(['column_name_1', 'column_name_2']); // remove an array of columns from the stack
         // $this->crud->setColumnDetails('column_name', ['attribute' => 'value']); // adjusts the properties of the passed in column (by name)
         // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
+
+        $this->crud->addColumn([
+            'name' => 'name',
+            'label' => 'Name',
+            'type' => 'text']);
+
+        $this->crud->addColumn([
+            'name' => 'address',
+            'label' => 'address',
+            'type' => 'address']);
 
         // ------ CRUD BUTTONS
         // possible positions: 'beginning' and 'end'; defaults to 'beginning' for the 'line' stack, 'end' for the others;
@@ -150,6 +125,8 @@ class EventCrudController extends CrudController
         // $this->crud->addClause('whereHas', 'posts', function($query) {
         //     $query->activePosts();
         // });
+        // $this->crud->addClause('withoutGlobalScopes');
+        // $this->crud->addClause('withoutGlobalScope', VisibleScope::class);
         // $this->crud->with(); // eager load relationships
         // $this->crud->orderBy();
         // $this->crud->groupBy();

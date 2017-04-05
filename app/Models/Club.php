@@ -5,7 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model
+class Club extends Model
 {
     use CrudTrait;
 
@@ -15,11 +15,11 @@ class Event extends Model
     |--------------------------------------------------------------------------
      */
 
-    //protected $table = 'events';
+    //protected $table = 'clubs';
     //protected $primaryKey = 'id';
-    public $timestamps = false;
+    // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['club', 'start_date', 'end_date', 'starts_at', 'ends_at', 'confirmed'];
+    protected $fillable = ['name', 'address', 'phone', 'info', 'claimed', 'lat', 'long', 'membership_cost'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -34,9 +34,9 @@ class Event extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
      */
-    public function club()
+    public function events()
     {
-        return $this->belongsTo('App\Models\Club', 'club_id');
+        return $this->hasMany('App\Models\Events');
     }
     /*
     |--------------------------------------------------------------------------

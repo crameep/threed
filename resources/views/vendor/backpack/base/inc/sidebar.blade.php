@@ -41,6 +41,15 @@
             </ul>
         </li>
 
+          <li class="treeview">
+            <a href="#"><i class="fa  fa-bullseye"></i> <span>Events, Clubs, Rulesets</span> <i class="fa fa-angle-left pull-right"></i></a>
+            <ul class="treeview-menu">
+              <li><a href="{{ url('admin/events') }}"><i class="fa fa-calendar"></i> <span>Events</span></a></li>
+              <li><a href="{{ url('admin/clubs') }}"><i class="fa  fa-address-book-o"></i> <span>Clubs</span></a></li>
+              <li><a href="{{ url('admin/rulesets') }}"><i class="fa fa-tag"></i> <span>Rulesets</span></a></li>
+            </ul>
+        </li>
+
           <!-- ================================================ -->
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/dashboard') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('backpack::base.dashboard') }}</span></a></li>
 

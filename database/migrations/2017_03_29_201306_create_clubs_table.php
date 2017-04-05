@@ -15,15 +15,12 @@ class CreateClubsTable extends Migration
     {
         Schema::create('clubs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
+            $table->integer('user_id')->default(0);
             $table->text('name');
-            $table->text('address');
-            $table->text('city');
+            $table->json('address');
             $table->text('phone');
             $table->text('info');
-            $table->boolean('claimed');
-            $table->decimal('lat', 10, 8);
-            $table->decimal('long', 10, 8);
+            $table->boolean('claimed')->default(0);
             $table->integer('membership_cost');
             $table->timestamps();
             $table->softDeletes();
@@ -37,6 +34,6 @@ class CreateClubsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('clubs');
     }
 }

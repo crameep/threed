@@ -16,9 +16,9 @@ class CreateClubsTable extends Migration
         Schema::create('clubs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->default(0);
-            $table->text('name');
+            $table->string('name');
             $table->json('address');
-            $table->text('phone');
+            $table->bigInteger('phone');
             $table->text('info');
             $table->boolean('claimed')->default(0);
             $table->integer('membership_cost');

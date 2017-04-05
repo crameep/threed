@@ -24,5 +24,6 @@ Route::group([
     // your CRUD resources and other admin routes here
     CRUD::resource('events', 'EventCrudController');
     CRUD::resource('clubs', 'ClubCrudController');
+    CRUD::resource('rulesets', 'RulesetCrudController');
 
 });

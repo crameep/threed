@@ -8,16 +8,16 @@
               <div class="items">
               @component('components._eventpanel')
                 @slot('date')
-                Tomorrow
+                {{$event->date}}
                 @endslot
 
                 @slot('targets')
-                30
+                {{ $event->targets }}
                 @endslot
               @endcomponent
                 <div class="add-card">
                  <div onclick="addCard(this)">
-                  <i class="fa fa-plus-circle"></i> 
+                  <i class="fa fa-plus-circle"></i>
                   Add new card
                 </div>
               </div>

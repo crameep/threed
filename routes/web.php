@@ -11,11 +11,7 @@
 |
  */
 
-Route::get('/', function () {
-    $event = App\Models\Event::all();
-    return view('layout')->with('events', $event);
-});
-
+Route::get('/', 'HomeController@index');
 Route::group([
     'prefix' => config('backpack.base.route_prefix', 'admin'),
     'middleware' => ['admin', 'web', 'auth'],

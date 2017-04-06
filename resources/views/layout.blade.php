@@ -51,20 +51,23 @@
   </nav>
   <div class="section">
     <div class="">
- 
 
  <div class="boards">
-    <div class="columns">
-    @component('components._clubpanel')
-    
+    <div class="columns is-multiline">
+
+    @foreach ($events as $event)
+
+    @component('components._clubpanel', ['event' => $event])
+
       @slot('name')
-        Wabash BowHunters
+        {{ $event->club->name}}
       @endslot
 
       @slot('count')
-          1
+          {{ $event->targets}}
       @endslot
     @endcomponent
+    @endforeach
       </div>
     </div>
 
